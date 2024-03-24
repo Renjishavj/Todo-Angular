@@ -1,0 +1,33 @@
+<div class="listdiv">
+    <form action="" class="searchForm" method="get">
+        <div>
+            <input type="text" class="title" name="title" [(ngModel)]="title" (keyup)="fetchData()" placeholder="Title">
+        </div>
+        <div>
+            <textarea name="description" class="description" id="" cols="30" rows="3"  placeholder="description"
+                (keyup)="fetchData()"></textarea>
+        </div>
+        <div class="btn-div">
+           <div> <button type="button" #button [disabled]="disabled" class="addbtn" (click)="addTodo()">Add</button></div>
+           <div> <button type="button" #button [disabled]="savebtn" class="savebtn" (click)="saveTodo()">Save</button></div>
+        </div>
+    </form>
+    <div ngbAccordion #accordion="ngbAccordion">
+        <div ngbAccordionItem *ngFor="let todo of todos; index as i">
+            <input type="checkbox" #check (click)="checkTodo(check, head)" />
+            <h2 ngbAccordionHeader class="accordion-button custom-header justify-content-between">
+                <h2 ngbAccordionToggle #head class="items">{{todo.title}}</h2>
+                <button class="btn btn-sm btn-outline-primary ms-2" (click)="editTodo(todo, i)">Edit</button>
+                <button class="btn btn-sm btn-outline-primary ms-2" (click)="deleteTodo(todo,i)">Delete</button>
+                
+            </h2>
+            <div ngbAccordionCollapse>
+                <div ngbAccordionBody>
+                    <ng-template>
+                        {{todo.description}}
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
