@@ -1,24 +1,27 @@
 <div class="listdiv">
-    <form action="" class="searchForm" method="get">
+    <form action="" class="searchForm" >
         <div>
-            <input type="text" class="title" name="title" [(ngModel)]="title" (keyup)="fetchData()" placeholder="Title">
+            <input type="text" name="title" class="title" [(ngModel)]="title" (keyup)="fetchData()" placeholder="title">
         </div>
         <div>
-            <textarea name="description" class="description" id="" cols="30" rows="3"  placeholder="description"
-                (keyup)="fetchData()"></textarea>
+            <textarea name="description" id="" cols="30" class="description" rows="3" [(ngModel)]="description"
+                (keyup)="fetchData()" placeholder="description"></textarea>
         </div>
         <div class="btn-div">
-           <div> <button type="button" #button [disabled]="disabled" class="addbtn" (click)="addTodo()">Add</button></div>
-           <div> <button type="button" #button [disabled]="savebtn" class="savebtn" (click)="saveTodo()">Save</button></div>
+            <button type="button" #button class="addbtn" [disabled]="disabled" (click)="addTodo()">Add</button>
+            <button type="button" #button class="savebtn" [disabled]="savebtn" (click)="saveTodo()">Save</button>
         </div>
     </form>
-    <div ngbAccordion #accordion="ngbAccordion">
-        <div ngbAccordionItem *ngFor="let todo of todos; index as i">
-            <input type="checkbox" #check (click)="checkTodo(check, head)" />
+    <div ngbAccordion #accordion="ngbAccordion" class="div-list">
+        <div ngbAccordionItem *ngFor="let todo of todos; index as i" >
+           
             <h2 ngbAccordionHeader class="accordion-button custom-header justify-content-between">
-                <h2 ngbAccordionToggle #head class="items">{{todo.title}}</h2>
-                <button class="btn btn-sm btn-outline-primary ms-2" (click)="editTodo(todo, i)">Edit</button>
-                <button class="btn btn-sm btn-outline-primary ms-2" (click)="deleteTodo(todo,i)">Delete</button>
+                <input type="checkbox" #check (click)="checkTodo(check, head)" class="chkbox" />
+                <h3 ngbAccordionToggle #head>{{todo.title}}</h3>
+                <div class="scrn-btn">
+                    <button class="btn btn-sm btn-outline-primary ms-2 editbtn"  (click)="editTodo(todo, i)">Edit</button>
+                <button class="btn btn-sm btn-outline-primary ms-2 dltebtn" (click)="deleteTodo(todo,i)">Delete</button>
+                </div>
                 
             </h2>
             <div ngbAccordionCollapse>

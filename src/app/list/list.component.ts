@@ -49,6 +49,7 @@ export class ListComponent {
   checkTodo(check:HTMLInputElement, head:HTMLHeadingElement){
       if(check.checked == true){
         head.style.textDecoration = 'line-through'
+        
       }else{
         head.style.textDecoration = 'none'
       }
